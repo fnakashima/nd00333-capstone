@@ -1,5 +1,9 @@
 Loan Prediction Problem Dataset
 https://www.kaggle.com/altruistdelhite04/loan-prediction-problem-dataset
 
+Training dataset
+https://raw.githubusercontent.com/fnakashima/nd00333-capstone/master/starter_file/dataset/train_u6lujuX_CVtuZ9i.csv
 
+Test dataset
+https://raw.githubusercontent.com/fnakashima/nd00333-capstone/master/starter_file/dataset/test_Y3wMUE5_7gLdaTN.csv
 
