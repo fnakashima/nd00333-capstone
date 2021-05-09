@@ -28,15 +28,14 @@ def clean_data(data):
     x_df = data.dropna()
     x_df.drop("Loan_ID", axis=1, inplace=True)
 
-    # # Filtering "True", "Yes", "Y" won't work as it will be recoginised as a boolean value automatically by dataset framework
     x_df.loc[:,('Gender')] = x_df.Gender.apply(lambda s: 1 if s == "Male" else 2)
-    x_df.loc[:,('Married')] = x_df.Married.apply(lambda s: 1 if s else 0)
+    x_df.loc[:,('Married')] = x_df.Married.apply(lambda s: 1 if s == "True" else 0)
     x_df.loc[:,('Dependents')] = x_df.Dependents.map(dependents)
     x_df.loc[:,('Education')] = x_df.Education.apply(lambda s: 1 if s == "Graduate" else 0)
-    x_df.loc[:,('Self_Employed')] = x_df.Self_Employed.apply(lambda s: 1 if s else 0)
+    x_df.loc[:,('Self_Employed')] = x_df.Self_Employed.apply(lambda s: 1 if s == "Yes" else 0)
     x_df.loc[:,('Property_Area')] = x_df.Property_Area.map(property_areas)
 
-    y_df = x_df.pop("Loan_Status").apply(lambda s: 1 if s else 0)
+    y_df = x_df.pop("Loan_Status").apply(lambda s: 1 if s == "True" else 0)
     return x_df, y_df
 
 ds.to_pandas_dataframe()
@@ -63,8 +62,8 @@ def main():
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
 
-    accuracy = model.score(x_test, y_test)
-    run.log("Accuracy", np.float(accuracy))
+    auc_weighted = model.score(x_test, y_test)
+    run.log("AUC_weighted", np.float(auc_weighted))
     
     # Save model
     os.makedirs('./outputs', exist_ok=True)
