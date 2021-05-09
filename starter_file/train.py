@@ -28,6 +28,7 @@ def clean_data(data):
 
     # Clean and one hot encode data
     x_df = data.to_pandas_dataframe().dropna()
+    x_df.drop("Loan_ID", axis=1, inplace=True)
 
     x_df["Gender"] = x_df.marital.apply(lambda s: 1 if s == "Male" else 2)
     x_df["Married"] = x_df.default.apply(lambda s: 1 if s == "Yes" else 0)
