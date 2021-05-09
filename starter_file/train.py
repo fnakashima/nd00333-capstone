@@ -62,8 +62,8 @@ def main():
 
     model = LogisticRegression(C=args.C, max_iter=args.max_iter).fit(x_train, y_train)
 
-    auc_weighted = model.score(x_test, y_test)
-    run.log("AUC_weighted", np.float(auc_weighted))
+    accuracy = model.score(x_test, y_test)
+    run.log("Accuracy", np.float(accuracy))
     
     # Save model
     os.makedirs('./outputs', exist_ok=True)
