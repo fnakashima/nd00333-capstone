@@ -14,9 +14,9 @@ from azureml.data.dataset_factory import TabularDatasetFactory
 # https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory?view=azure-ml-py
 
 # Data is located at:
-# "https://raw.githubusercontent.com/fnakashima/nd00333_AZMLND_C2/master/starter_files/dataset/train_u6lujuX_CVtuZ9i.csv"
+# "https://raw.githubusercontent.com/fnakashima/nd00333-capstone/master/starter_file/dataset/train_u6lujuX_CVtuZ9i.csv"
 
-web_path = ['https://raw.githubusercontent.com/fnakashima/nd00333_AZMLND_C2/master/starter_files/dataset/train_u6lujuX_CVtuZ9i.csv']
+web_path = ['https://raw.githubusercontent.com/fnakashima/nd00333-capstone/master/starter_file/dataset/train_u6lujuX_CVtuZ9i.csv']
 ds = TabularDatasetFactory.from_delimited_files(path=web_path)
 
 def clean_data(data):
@@ -25,20 +25,20 @@ def clean_data(data):
     property_areas = {"Urban":1, "Semiurban":2, "Rural":3}
 
     # Clean and one hot encode data
-    x_df = data.dropna()
+    x_df = data.to_pandas_dataframe().dropna()
     x_df.drop("Loan_ID", axis=1, inplace=True)
 
+    # Filtering "True", "Yes", "Y" won't work as it will be recoginised as a boolean value automatically by dataset framework
     x_df.loc[:,('Gender')] = x_df.Gender.apply(lambda s: 1 if s == "Male" else 2)
-    x_df.loc[:,('Married')] = x_df.Married.apply(lambda s: 1 if s == "True" else 0)
+    x_df.loc[:,('Married')] = x_df.Married.apply(lambda s: 1 if s else 0)
     x_df.loc[:,('Dependents')] = x_df.Dependents.map(dependents)
     x_df.loc[:,('Education')] = x_df.Education.apply(lambda s: 1 if s == "Graduate" else 0)
-    x_df.loc[:,('Self_Employed')] = x_df.Self_Employed.apply(lambda s: 1 if s == "Yes" else 0)
+    x_df.loc[:,('Self_Employed')] = x_df.Self_Employed.apply(lambda s: 1 if s else 0)
     x_df.loc[:,('Property_Area')] = x_df.Property_Area.map(property_areas)
 
-    y_df = x_df.pop("Loan_Status").apply(lambda s: 1 if s == "True" else 0)
+    y_df = x_df.pop("Loan_Status").apply(lambda s: 1 if s else 0)
     return x_df, y_df
 
-ds.to_pandas_dataframe()
 x, y = clean_data(ds)
 
 # Split data into train and test sets.
