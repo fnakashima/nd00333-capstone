@@ -1,0 +1,52 @@
+2021-05-12T18:38:50,298572800+00:00 - iot-server/run 
+2021-05-12T18:38:50,387902600+00:00 - nginx/run 
+2021-05-12T18:38:50,403697300+00:00 - gunicorn/run 
+File not found: /var/azureml-app/.
+Starting HTTP server
+2021-05-12T18:38:50,420114400+00:00 - rsyslog/run 
+EdgeHubConnectionString and IOTEDGE_IOTHUBHOSTNAME are not set. Exiting...
+2021-05-12T18:38:53,087006400+00:00 - iot-server/finish 1 0
+2021-05-12T18:38:53,088659700+00:00 - Exit code 1 is normal. Not restarting iot-server.
+Starting gunicorn 19.9.0
+Listening at: http://127.0.0.1:31311 (61)
+Using worker: sync
+worker timeout is set to 300
+Booting worker with pid: 86
+SPARK_HOME not set. Skipping PySpark Initialization.
+Initializing logger
+2021-05-12 18:39:06,088 | root | INFO | Starting up app insights client
+logging socket was found. logging is available.
+logging socket was found. logging is available.
+2021-05-12 18:39:06,089 | root | INFO | Starting up request id generator
+2021-05-12 18:39:06,089 | root | INFO | Starting up app insight hooks
+2021-05-12 18:39:06,097 | root | INFO | Invoking user's init function
+Model path: azureml-models/loan-prediction-hd-model/2/model.joblib
+no request id,Model path: azureml-models/loan-prediction-hd-model/2/model.joblib
+
+Trying to load ScikitLearn model from azureml-models/loan-prediction-hd-model/2/model.joblib.
+no request id,Trying to load ScikitLearn model from azureml-models/loan-prediction-hd-model/2/model.joblib.
+
+no request id,/azureml-envs/azureml_681ee0959842f80790f1d196ee3c6847/lib/python3.7/site-packages/sklearn/base.py:318: UserWarning: Trying to unpickle estimator LogisticRegression from version 0.24.1 when using version 0.22.2.post1. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+
+Loaded model file azureml-models/loan-prediction-hd-model/2/model.joblib using joblib.
+no request id,Loaded model file azureml-models/loan-prediction-hd-model/2/model.joblib using joblib.
+
+Treating loaded ScikitLearn model as a classifier; scoring will call predict_proba().
+no request id,Treating loaded ScikitLearn model as a classifier; scoring will call predict_proba().
+
+2021-05-12 18:39:06,696 | root | INFO | Users's init has completed successfully
+/azureml-envs/azureml_681ee0959842f80790f1d196ee3c6847/lib/python3.7/site-packages/sklearn/base.py:318: UserWarning: Trying to unpickle estimator LogisticRegression from version 0.24.1 when using version 0.22.2.post1. This might lead to breaking code or invalid results. Use at your own risk.
+  UserWarning)
+2021-05-12 18:39:06,706 | root | INFO | Skipping middleware: dbg_model_info as it's not enabled.
+2021-05-12 18:39:06,706 | root | INFO | Skipping middleware: dbg_resource_usage as it's not enabled.
+2021-05-12 18:39:06,707 | root | INFO | Scoring timeout is found from os.environ: 60000 ms
+2021-05-12 18:39:16,503 | root | INFO | 200
+127.0.0.1 - - [12/May/2021:18:39:16 +0000] "GET /swagger.json HTTP/1.0" 200 2760 "-" "Go-http-client/1.1"
+2021-05-12 18:40:25,624 | root | INFO | 200
+127.0.0.1 - - [12/May/2021:18:40:25 +0000] "GET /swagger.json HTTP/1.0" 200 2760 "-" "Go-http-client/1.1"
+2021-05-12 18:48:48,757 | root | INFO | 200
+127.0.0.1 - - [12/May/2021:18:48:48 +0000] "GET /swagger.json HTTP/1.0" 200 2760 "-" "Go-http-client/1.1"
+2021-05-12 18:48:50,498 | root | INFO | Scoring Timer is set to 60.0 seconds
+2021-05-12 18:48:50,591 | root | INFO | 200
+127.0.0.1 - - [12/May/2021:18:48:50 +0000] "POST /score?verbose=true HTTP/1.0" 200 62 "-" "Go-http-client/1.1"
