@@ -2,10 +2,14 @@
 
 # Your Project Title Here
 
-*TODO:* Write a short introduction to your project.
+This is the final project of the Udacity Azure ML Nanodegree.  
+In this project, we build two models: one using Azure AutoML and one customized model whose hyperparameters are tuned using HyperDrive.  
+After building the models, we compare the performance of both the models.  
+Finally, we deploy the best performing model and test the endpoint.
 
-## Project Set Up and Installation
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
+## Architectural Diagram
+Here is an architectual diagram of this project.
+![Project Architectural Diagram](/images/ProjectArchitecturalDiagram.PNG)
 
 ## Dataset
 
