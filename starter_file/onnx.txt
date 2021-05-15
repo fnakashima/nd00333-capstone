@@ -1,0 +1,10 @@
+import joblib
+from skl2onnx import convert_sklearn
+import onnxmltools
+from onnxmltools import convert_sklearn
+from onnxmltools.utils import save_model
+from onnxmltools.convert.common.data_types import *
+lr_model = joblib.load(project_folder + '/outputs/model.joblib')
+initial_type = [('float_input', FloatTensorType([1, 4]))]
+onnx_model = onnxmltools.convert_sklearn(lr_model, initial_types=initial_type)
+save_model(onnx_model, project_folder + "/outputs/model.onnx")
