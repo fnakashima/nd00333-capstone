@@ -1,51 +1,48 @@
-import urllib.request
 import json
+import logging
 import os
-import ssl
+import pickle
+import numpy as np
+import pandas as pd
+import joblib
 
-def allowSelfSignedHttps(allowed):
-    # bypass the server certificate verification on client side
-    if allowed and not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None):
-        ssl._create_default_https_context = ssl._create_unverified_context
+from inference_schema.schema_decorators import input_schema, output_schema
+from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
+from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
 
-allowSelfSignedHttps(True) # this line is needed if you use self-signed certificate in your scoring service.
 
-// Request data goes here
-data = {
-    "data":
-    [
-        {
-            '0': "1",
-            '1': "0",
-            '2': "0",
-            '3': "0",
-            '4': "1",
-            '5': "5800",
-            '6': "0",
-            '7': "132",
-            '8': "360",
-            '9': "1",
-            '10': "2",
-        },
-    ],
-}
+# The init() method is called once, when the web service starts up.
+#
+# Typically you would deserialize the model file, as shown here using joblib,
+# and store it in a global variable so your run() method can access it later.
+def init():
+    global model
 
-body = str.encode(json.dumps(data))
+    # The AZUREML_MODEL_DIR environment variable indicates
+    # a directory containing the model file you registered.
+    model_filename = 'model.jetlib'
+    model_path = os.path.join(os.environ['AZUREML_MODEL_DIR'], model_filename)
 
-url = 'http://75a641c7-68f0-4c0b-9e08-08b673675e94.southcentralus.azurecontainer.io/score'
-api_key = '' # Replace this with the API key for the web service
-headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
+    model = joblib.load(model_path)
 
-req = urllib.request.Request(url, body, headers)
 
-try:
-    response = urllib.request.urlopen(req)
+# The run() method is called each time a request is made to the scoring API.
+#
+# Shown here are the optional input_schema and output_schema decorators
+# from the inference-schema pip package. Using these decorators on your
+# run() method parses and validates the incoming payload against
+# the example input you provide here. This will also generate a Swagger
+# API document for your web service.
+input_sample = pd.DataFrame({"Gender": pd.Series([0], dtype="int64"), "Married": pd.Series([0], dtype="int64"), "Dependents": pd.Series([0], dtype="int64"), "Education": pd.Series([0], dtype="int64"), "Self_Employed": pd.Series([0], dtype="int64"), "ApplicantIncome": pd.Series([0], dtype="int64"), "CoapplicantIncome": pd.Series([0.0], dtype="float64"), "LoanAmount": pd.Series([0.0], dtype="float64"), "Loan_Amount_Term": pd.Series([0.0], dtype="float64"), "Credit_History": pd.Series([0.0], dtype="float64"), "Property_Area": pd.Series([0], dtype="int64")})
+output_sample = np.array([0])
 
-    result = response.read()
-    print(result)
-except urllib.error.HTTPError as error:
-    print("The request failed with status code: " + str(error.code))
-
-    # Print the headers - they include the requert ID and the timestamp, which are useful for debugging the failure
-    print(error.info())
-    print(json.loads(error.read().decode("utf8", 'ignore')))
+@input_schema('data', PandasParameterType(input_sample))
+@output_schema(NumpyParameterType(output_sample))
+def run(data):
+    try:
+        result = model.predict(data)
+        return json.dumps({"result": result.tolist()})
+    except Exception as e:
+        result = str(e)
+        return json.dumps({"error": result})
+        
