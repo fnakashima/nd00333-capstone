@@ -9,7 +9,7 @@ Finally, we deploy the best performing model and test the endpoint.
 
 ## Architectural Diagram
 Here is an architectual diagram of this project.
-![Project Architectural Diagram](/images/ProjectArchitecturalDiagram.PNG)
+![Project Architectural Diagram](/starter_file/images/ProjectArchitecturalDiagram.PNG)
 
 ## Dataset
 
