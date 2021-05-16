@@ -1,6 +1,6 @@
 *NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
 
-# Your Project Title Here
+# Customer Loan Status Prediction
 
 This is the final project of the Udacity Azure ML Nanodegree.  
 In this project, we build two models: one using Azure AutoML and one customized model whose hyperparameters are tuned using HyperDrive.  
@@ -14,10 +14,12 @@ Here is an architectual diagram of this project.
 ## Dataset
 
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from.
+In this project, we use a [loan prediction problem dataset](https://www.kaggle.com/altruistdelhite04/loan-prediction-problem-dataset) from Kaggle. The dataset contains 12 features and the target column **Loan_Status**.
 
 ### Task
 *TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+With this dataset, we predict a loan status (Yes or No). Therefore, we can categorise this problem as a binary classification problem.  
+The dataset contains 12 features but we drop one column "Loan_ID" as it is just an identifier and not relevant to a prediction result.
 
 ### Access
 *TODO*: Explain how you are accessing the data in your workspace.
