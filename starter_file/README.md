@@ -1,5 +1,3 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
-
 # Customer Loan Status Prediction
 
 This is the final project of the Udacity Azure ML Nanodegree.  
@@ -14,18 +12,25 @@ Here is an architectual diagram of this project.
 ## Dataset
 
 ### Overview
-In this project, we use a [loan prediction problem dataset](https://www.kaggle.com/altruistdelhite04/loan-prediction-problem-dataset) from Kaggle. The dataset contains 12 features and the target column **Loan_Status**.
+In this project, we use a [loan prediction problem dataset](https://www.kaggle.com/altruistdelhite04/loan-prediction-problem-dataset) from Kaggle. The dataset contains 13 features including a target column **Loan_Status**.
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
-With this dataset, we predict a loan status (Yes or No). Therefore, we can categorise this problem as a binary classification problem.  
+With this dataset, we predict a loan status (Yes or No). Therefore, we can categorise this problem as a binary classification problem. 
+
 The dataset contains 12 features but we drop one column "Loan_ID" as it is just an identifier and not relevant to a prediction result.
+In addition, as some features have string values, we update the data values into integer values by using dictionaries.
+These tasks are done in the data clean up process defined in [train.py](./train.py).
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+We access the dataset directly from Kaggle by using [from_delimited_files](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory?view=azure-ml-py#from-delimited-files-path--validate-true--include-path-false--infer-column-types-true--set-column-types-none--separator------header-true--partition-format-none--support-multi-line-false--empty-as-string-false--encoding--utf8--) of [TabularDatasetFactory](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory?view=azure-ml-py)
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+Since the target problem is to predict customer's loan status (binary prediction: 0 or 1), the task type is **classification** and the target label column is **Loan_Status**.  
+
+We use **accuracy** as a primary metric and set **30** as experiment_timeout_minutes to limit experiment running duration.  
+We set **10** as max_concurrent_iterations to run iterations in the experiment in parallel. featurization is set to **auto** to enable featurization step to be done automatically.  
+
+We also set **enable_onnx_compatible_models** True to convert a model to ONNX later for the Standout suggestions.
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
