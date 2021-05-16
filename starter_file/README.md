@@ -34,14 +34,14 @@ We also set **enable_onnx_compatible_models** True to convert a model to ONNX la
 ![Automated ML settings and configuration](/starter_file/images/AutoML_Settings.PNG)
 
 ### Results
-Here are models trained by Automated ML. The best accuracy was 0.80833 by [SparseNormalizer](https://docs.microsoft.com/en-us/python/api/azureml-automl-runtime/azureml.automl.runtime.shared.model_wrappers.sparsenormalizer?view=azure-ml-py), [XGBoostClassifier](https://docs.microsoft.com/en-us/python/api/azureml-automl-runtime/azureml.automl.runtime.shared.model_wrappers.xgboostclassifier?view=azure-ml-py)
+Here are models trained by Automated ML. The best accuracy was ``0.80833`` by [SparseNormalizer](https://docs.microsoft.com/en-us/python/api/azureml-automl-runtime/azureml.automl.runtime.shared.model_wrappers.sparsenormalizer?view=azure-ml-py), [XGBoostClassifier](https://docs.microsoft.com/en-us/python/api/azureml-automl-runtime/azureml.automl.runtime.shared.model_wrappers.xgboostclassifier?view=azure-ml-py)
 ![Models trained by Automated ML](/starter_file/images/AutoML_Models.PNG)
 
-Here are details and some metrics of the model.
+Here are details and some metrics of the best model.
 ![Details of the best model](/starter_file/images/AutoML_BestModelDetails.PNG)
 ![Metircs of the best model](/starter_file/images/AutoML_BestModelMetrics.PNG)
 
-Here is a result of RunDetails widget.
+Here is a result of RunDetails widget. (See [automl.ipynb](./automl.ipynb) for more details.
 ![RunDetails result for AutoML run](/starter_file/images/AutoML_RunDetails2.PNG)
 
 The metrics also can be confirmed by `get_metrics()` of the best run as below.
@@ -52,11 +52,30 @@ We could improve it by increasing volume of training dataset and tarining durati
 We could also try to select other metrics as a primary metric such as `AUC weighted`.
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+In this project, we use the [Scikit-learn Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) as a classification algorithm.
 
+We specify two hyperparameters, one is the inverse of regularization strength(``C``) and another is the maximum number of iterations to converge(``max_iter``).
+
+In terms of parameter sampling, we use [Random Parameter Sampling](https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.randomparametersampling?view=azure-ml-py). The random sampling supports early termination of low performance runs, therefore, we can save time for training and cost for computing resource and this is good especially for the initial search. This time, the choice of ``6`` parameters for C, and the choice of ``8`` parameters are applied.
+
+Regarding an early termination policy, we use [Bandit Policy](https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.banditpolicy?view=azure-ml-py). This policy ends runs when the primary metric isn't withing the specified slack factor/amount of the most successful run.
+
+In Hyperdrive configuration, we specify ``Accuracy`` as a primary metric which is the same as AutoML project and the primary metric goal is ``PrimaryMetricGoal.MAXIMIZE`` to maximize the primary metric.
+
+We also specify the following two parameters to limit iterations.
+
+max_total_runs: ``1000`` (The maximum total number of runs to create)
+max_concurrent_runs: ``10`` (The maximum number of runs to execute concurrently)
 
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+The best accuracy was ``0.8916666666666667`` and it was better than the result of Automated ML model.
+Here are models tuned by HyperDrive.
+![HyperDrive runs](/starter_file/images/HyperDrive_ChildRuns.PNG)
+
+Here are details and some metrics of the best model.
+![Details of the HyperDrive model](/starter_file/images/HyperDrive_BestModel3.PNG)
+![Metircs of the HyperDrive model](/starter_file/images/HyperDrive_ChildRunMetrics.PNG)
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
