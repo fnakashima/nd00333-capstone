@@ -41,7 +41,7 @@ Here are details and some metrics of the best model.
 ![Details of the best model](/starter_file/images/AutoML_BestModelDetails.PNG)
 ![Metircs of the best model](/starter_file/images/AutoML_BestModelMetrics.PNG)
 
-Here is a result of RunDetails widget. (See [automl.ipynb](./automl.ipynb) for more details.
+Here is a result of RunDetails widget. (See [automl.ipynb](./automl.ipynb) for more details)
 ![RunDetails result for AutoML run](/starter_file/images/AutoML_RunDetails2.PNG)
 
 The metrics also can be confirmed by `get_metrics()` of the best run as below.
@@ -77,7 +77,11 @@ Here are details and some metrics of the best model.
 ![Details of the HyperDrive model](/starter_file/images/HyperDrive_BestModel3.PNG)
 ![Metircs of the HyperDrive model](/starter_file/images/HyperDrive_ChildRunMetrics.PNG)
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+Here is a result of RunDetails widget. (See [automl.ipynb](./automl.ipynb) for more details)
+![RunDetails result for HyperDrive run](/starter_file/images/HyperDrive_RunDetails.PNG)
+
+The metrics also can be confirmed by `get_metrics()` of the best run as below.
+![Result of get_metrics for HyperDrive run](/starter_file/images/HyperDrive_BestModel.PNG)
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
