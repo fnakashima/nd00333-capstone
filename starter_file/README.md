@@ -34,6 +34,12 @@ We also set **enable_onnx_compatible_models** True to convert a model to ONNX la
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+Here are models trained by Automated ML. The best accuracy was 0.80833 by [SparseNormalizer](https://docs.microsoft.com/en-us/python/api/azureml-automl-runtime/azureml.automl.runtime.shared.model_wrappers.sparsenormalizer?view=azure-ml-py), [XGBoostClassifier](https://docs.microsoft.com/en-us/python/api/azureml-automl-runtime/azureml.automl.runtime.shared.model_wrappers.xgboostclassifier?view=azure-ml-py)
+![Models trained by Automated ML](/starter_file/images/AutoML_Models.PNG)
+
+Here are details and some metrics of the model.
+![Details of the best model](/starter_file/images/AutoML_BestModelDetails.PNG)
+![Details of the best model](/starter_file/images/AutoML_BestModelMetrics.PNG)
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
