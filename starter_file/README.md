@@ -86,7 +86,6 @@ Fur further improvement, we could try different patterns of parameter sampling a
 Increasing max_total_runs with more data could also be an option.
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
 Since the result of HyperDrive model was better than the one from Automated ML, we deploy the HyperDrive model.
 Here is a deployed model.
 ![Deployed endpoint](/starter_file/images/DeployModel_Endpoint.PNG)
@@ -103,3 +102,20 @@ We use test data split from the train data to test the endpoint and check result
 
 ## Standout Suggestions
 *TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+### Convert your model to ONNX format
+In the Automated AL project, we successfully retrieved the ONNX model from the best run by specifying return_onnx_model option as below.
+![Retrive ONNX model](/starter_file/images/StandoutSuggestion_ONNX.PNG)
+
+To get this model, ```enable_onnx_compatible_models``` needs to be set true in AutoMLConfig.
+
+After retrieving the model, it can be saved by using [OnnxConverter](https://docs.microsoft.com/en-us/python/api/azureml-automl-runtime/azureml.automl.runtime.onnx_convert.onnx_converter.onnxconverter?view=azure-ml-py).
+![Save ONNX model](/starter_file/images/StandoutSuggestion_ONNX2.PNG)
+
+### Enable logging in your deployed web app
+In the HyperDrive project, we successfully enabled ApplicationInsights for detailed logging in the deployed endpoint as below.
+![Enabled ApplicationInsights](/starter_file/images/StandoutSuggestion_AppInsightsEnabled.PNG)
+![Enabled ApplicationInsights2](/starter_file/images/StandoutSuggestion_AppInsights.PNG)
+
+By doing this, more useful logs can be seen through ApplicationInsights and can be filtered by query.
+![Detailed loggs in ApplicationInsights](/starter_file/images/StandoutSuggestion_AppInsights2.PNG)
+![Query in ApplicationInsights](/starter_file/images/StandoutSuggestion_AppInsights3.PNG)
