@@ -31,6 +31,7 @@ We use **accuracy** as a primary metric and set **30** as experiment_timeout_min
 We set **10** as max_concurrent_iterations to run iterations in the experiment in parallel. featurization is set to **auto** to enable featurization step to be done automatically.  
 
 We also set **enable_onnx_compatible_models** True to convert a model to ONNX later for the Standout suggestions.
+![Automated ML settings and configuration](/starter_file/images/AutoML_Settings.PNG)
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
@@ -39,9 +40,11 @@ Here are models trained by Automated ML. The best accuracy was 0.80833 by [Spars
 
 Here are details and some metrics of the model.
 ![Details of the best model](/starter_file/images/AutoML_BestModelDetails.PNG)
-![Details of the best model](/starter_file/images/AutoML_BestModelMetrics.PNG)
+![Metircs of the best model](/starter_file/images/AutoML_BestModelMetrics.PNG)
 
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+Here is a result of RunDetails widget.
+![RunDetails result for AutoML run](/starter_file/images/AutoML_RunDetails2.PNG)
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
