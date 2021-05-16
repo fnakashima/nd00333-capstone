@@ -1,26 +1,12 @@
 import json
-import logging
 import os
-import pickle
 import numpy as np
 import pandas as pd
 import joblib
 
-import azureml.automl.core
-from azureml.automl.core.shared import logging_utilities, log_server
-from azureml.telemetry import INSTRUMENTATION_KEY
-
 from inference_schema.schema_decorators import input_schema, output_schema
 from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
 from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
-
-try:
-    log_server.enable_telemetry(INSTRUMENTATION_KEY)
-    log_server.set_verbosity('INFO')
-    #logger = logging.getLogger(__name__)
-    logger = logging.getLogger('azureml.automl.core.scoring_script')
-except:
-    pass
 
 # The init() method is called once, when the web service starts up.
 #
@@ -33,13 +19,8 @@ def init():
     # a directory containing the model file you registered.
     model_filename = 'model.joblib'
     model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), model_filename)
-    try:
-        logger.info("Loading model from path:"+ model_path)
-        model = joblib.load(model_path)
-        logger.info("Loading successful.")
-    except Exception as e:
-        logging_utilities.log_traceback(e, logger)
-        raise
+    print("model_path:", model_path)
+    model = joblib.load(model_path)
 
 # The run() method is called each time a request is made to the scoring API.
 #

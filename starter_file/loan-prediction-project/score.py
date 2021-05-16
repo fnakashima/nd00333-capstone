@@ -17,7 +17,7 @@ from inference_schema.schema_decorators import input_schema, output_schema
 from inference_schema.parameter_types.numpy_parameter_type import NumpyParameterType
 from inference_schema.parameter_types.pandas_parameter_type import PandasParameterType
 
-
+print("score.py start")
 input_sample = pd.DataFrame({"Gender": pd.Series([0], dtype="int64"), "Married": pd.Series([0], dtype="int64"), "Dependents": pd.Series([0], dtype="int64"), "Education": pd.Series([0], dtype="int64"), "Self_Employed": pd.Series([0], dtype="int64"), "ApplicantIncome": pd.Series([0], dtype="int64"), "CoapplicantIncome": pd.Series([0.0], dtype="float64"), "LoanAmount": pd.Series([0.0], dtype="float64"), "Loan_Amount_Term": pd.Series([0.0], dtype="float64"), "Credit_History": pd.Series([0.0], dtype="float64"), "Property_Area": pd.Series([0], dtype="int64")})
 output_sample = np.array([0])
 try:
@@ -33,6 +33,7 @@ def init():
     # This name is model.id of model that we want to deploy deserialize the model file back
     # into a sklearn model
     model_path = os.path.join(os.getenv('AZUREML_MODEL_DIR'), 'model.pkl')
+    print("model_path:", model_path)
     path = os.path.normpath(model_path)
     path_split = path.split(os.sep)
     log_server.update_custom_dimensions({'model_name': path_split[-3], 'model_version': path_split[-2]})
