@@ -101,7 +101,6 @@ We use test data split from the train data to test the endpoint and check result
 - Demo of a sample request sent to the endpoint and its response
 
 ## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
 ### Convert your model to ONNX format
 In the Automated AL project, we successfully retrieved the ONNX model from the best run by specifying return_onnx_model option as below.
 ![Retrive ONNX model](/starter_file/images/StandoutSuggestion_ONNX.PNG)
