@@ -68,7 +68,6 @@ max_total_runs: ``1000`` (The maximum total number of runs to create)
 max_concurrent_runs: ``10`` (The maximum number of runs to execute concurrently)
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 The best accuracy was ``0.8916666666666667`` and it was better than the result of Automated ML model.
 Here are models tuned by HyperDrive.
 ![HyperDrive runs](/starter_file/images/HyperDrive_ChildRuns.PNG)
@@ -77,14 +76,24 @@ Here are details and some metrics of the best model.
 ![Details of the HyperDrive model](/starter_file/images/HyperDrive_BestModel3.PNG)
 ![Metircs of the HyperDrive model](/starter_file/images/HyperDrive_ChildRunMetrics.PNG)
 
-Here is a result of RunDetails widget. (See [automl.ipynb](./automl.ipynb) for more details)
+Here is a result of RunDetails widget. (See [hyperparameter_tuning.ipynb](./hyperparameter_tuning.ipynb) for more details)
 ![RunDetails result for HyperDrive run](/starter_file/images/HyperDrive_RunDetails.PNG)
 
 The metrics also can be confirmed by `get_metrics()` of the best run as below.
 ![Result of get_metrics for HyperDrive run](/starter_file/images/HyperDrive_BestModel.PNG)
 
+Fur further improvement, we could try different patterns of parameter sampling although we have already tested some patterns.
+Increasing max_total_runs with more data could also be an option.
+
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+Since the result of HyperDrive model was better than the one from Automated ML, we deploy the HyperDrive model.
+Here is a deployed model.
+![Deployed endpoint](/starter_file/images/DeployModel_Endpoint.PNG)
+
+We use test data split from the train data to test the endpoint and check results.
+![Test endpoint](/starter_file/images/TestEndpoint.PNG)
+
 
 ## Screen Recording
 *TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
