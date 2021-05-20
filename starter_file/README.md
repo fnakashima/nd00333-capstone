@@ -92,6 +92,7 @@ Here is a deployed model.
 ![Deployed endpoint](/starter_file/images/DeployModel_Endpoint.PNG)
 
 We use test data split from the train data to test the endpoint and check results.
+We can use ```run``` method of the service endpoint with the input parameter to send a test request, and the service returns a response as below.
 ![Test endpoint](/starter_file/images/TestEndpoint.PNG)
 
 
