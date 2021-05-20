@@ -56,7 +56,7 @@ In this project, we use the [Scikit-learn Logistic Regression](https://scikit-le
 
 We specify two hyperparameters, one is the inverse of regularization strength(``C``) and another is the maximum number of iterations to converge(``max_iter``).
 
-In terms of parameter sampling, we use [Random Parameter Sampling](https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.randomparametersampling?view=azure-ml-py). The random sampling supports early termination of low performance runs, therefore, we can save time for training and cost for computing resource and this is good especially for the initial search. This time, the choice of ``6`` parameters for C, and the choice of ``8`` parameters are applied.
+In terms of parameter sampling, we use [Random Parameter Sampling](https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.randomparametersampling?view=azure-ml-py). The random sampling supports early termination of low performance runs, therefore, we can save time for training and cost for computing resource and this is good especially for the initial search. This time, the choice of ``6`` values for the parameter C, and the choice of ``8`` values for the parameter max_iter are applied.
 
 Regarding an early termination policy, we use [Bandit Policy](https://docs.microsoft.com/en-us/python/api/azureml-train-core/azureml.train.hyperdrive.banditpolicy?view=azure-ml-py). This policy ends runs when the primary metric isn't withing the specified slack factor/amount of the most successful run.
 
