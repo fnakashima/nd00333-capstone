@@ -23,7 +23,7 @@ In addition, as some features have string values, we update the data values into
 These tasks are done in the data clean up process defined in [train.py](./train.py).
 
 ### Access
-We access the dataset directly from Kaggle by using [from_delimited_files](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory?view=azure-ml-py#from-delimited-files-path--validate-true--include-path-false--infer-column-types-true--set-column-types-none--separator------header-true--partition-format-none--support-multi-line-false--empty-as-string-false--encoding--utf8--) of [TabularDatasetFactory](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory?view=azure-ml-py).
+We access the dataset stored online by using [from_delimited_files](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory?view=azure-ml-py#from-delimited-files-path--validate-true--include-path-false--infer-column-types-true--set-column-types-none--separator------header-true--partition-format-none--support-multi-line-false--empty-as-string-false--encoding--utf8--) of [TabularDatasetFactory](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.data.dataset_factory.tabulardatasetfactory?view=azure-ml-py).
 
 ## Automated ML
 Since the target problem is to predict customer's loan status (binary prediction: 0 or 1), the task type is ``classification`` and the target label column is ``Loan_Status``.  
