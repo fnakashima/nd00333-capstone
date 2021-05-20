@@ -1,5 +1,6 @@
 # Customer Loan Status Prediction
 
+## Overview
 This is the final project of the Udacity Azure ML Nanodegree.  
 In this project, we build two models: one using Azure AutoML and one customized model whose hyperparameters are tuned using HyperDrive.  
 After building the models, we compare the performance of both the models.  
