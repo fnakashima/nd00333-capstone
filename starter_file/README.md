@@ -97,10 +97,8 @@ We can use ```run``` method of the service endpoint with the input parameter to 
 
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
+Here is a screencast for this project.
+https://youtu.be/LSRD_LHjsBA
 
 ## Standout Suggestions
 ### Convert your model to ONNX format
